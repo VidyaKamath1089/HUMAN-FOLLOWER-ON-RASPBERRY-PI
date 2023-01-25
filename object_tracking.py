@@ -11,12 +11,12 @@ import util as ut
 ut.init_gpio()
 
 cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture({path to a recorded video}) 
 threshold=0.2
 top_k=1 #number of objects to be shown as detected
 
-model_dir = '/var/www/html/all_models'
+model_dir = '{Path to your model directory}'
 model = 'mobilenet_ssd_v2_coco_quant_postprocess.tflite'
-model_edgetpu = 'mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite'
 lbl = 'coco_labels.txt'
 
 tolerance=0.1
@@ -188,12 +188,7 @@ def get_delay(deviation,direction):
 
 def main():
     
-    from util import edgetpu
-    
-    if (edgetpu==1):
-        mdl = model_edgetpu
-    else:
-         mdl = model
+    mdl = model
         
     interpreter, labels =cm.load_model(model_dir,mdl,lbl,edgetpu)
     
@@ -242,17 +237,10 @@ def main():
        # cv2.imshow('Object Tracking - TensorFlow Lite', cv2_im)
         
         ret, jpeg = cv2.imencode('.jpg', cv2_im)
-        pic = jpeg.tobytes()
-        
-        #Flask streaming
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + pic + b'\r\n\r\n')
+        pic = jpeg.tobytes(
        
         arr_dur[2]=time.time() - start_t2
-        #cm.time_elapsed(start_t2,"other")
-        #cm.time_elapsed(start_time,"overall")
         
-        #print("arr_dur:",arr_dur)
         fps = round(1.0 / (time.time() - start_time),1)
         print("*********FPS: ",fps,"************")
 
