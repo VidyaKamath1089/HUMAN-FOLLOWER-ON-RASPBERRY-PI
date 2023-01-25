@@ -2,7 +2,7 @@
 To perform object tracking on Raspberry Pi in real-time using a 4-wheel robot
 
 
-Robot detects an object using a Machine Learning model 'MobileNet SSD v1 (COCO)' and TensorFlow Lite interpreter. The Robot follows the object and manoeuvres itself to get the object in the center of frame. While the robot is tracking / following the object, working of tracking algorithm and Robot's view can be accessed on a browser. Robot's view with information overlay is generated using OpenCV. The various overlays on a frame are shown in the picture below
+Robot recognises an object using TensorFlow Lite and the MobileNet SSD v1 (COCO) deep learning model. The Robot maneuvers itself to keep the object in the centre of the frame while following it. While the robot is tracking / following the object, working of tracking algorithm and Robot's view is accessed on a a different device using VNC remote desktop. Using OpenCV, a robot's perspective with an information overlay is produced. The image below displays a frame with numerous overlays.
 
 <p align="center">
    <img src="https://github.com/VidyaKamath1089/HUMAN-FOLLOWER-ON-RASPBERRY-PI/blob/main/RoboView.jpg" >
