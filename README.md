@@ -8,7 +8,7 @@ Robot recognises an object using TensorFlow Lite and the MobileNet SSD v1 (COCO)
    <img src="https://github.com/VidyaKamath1089/HUMAN-FOLLOWER-ON-RASPBERRY-PI/blob/main/car3.jpg" >
 </p>
 
-While the robot is tracking / following the object, working of tracking algorithm and Robot's view is accessed on a a different device using VNC remote desktop. Using OpenCV, a robot's perspective with an information overlay is produced. The image below displays a frame with numerous overlays.
+While the robot is tracking / following the object, working of tracking algorithm and Robot's view is accessed on a different device using VNC remote desktop. Using OpenCV, a robot's perspective with an information overlay is produced. The image below displays a frame with numerous overlays.
 
 <p align="center">
    <img src="https://github.com/VidyaKamath1089/HUMAN-FOLLOWER-ON-RASPBERRY-PI/blob/main/RoboView.jpg" >
