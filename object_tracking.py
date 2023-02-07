@@ -6,7 +6,7 @@ import time
 from threading import Thread
 
 import sys
-sys.path.insert(0, '/var/www/html/earthrover')
+
 import util as ut
 ut.init_gpio()
 
@@ -57,7 +57,6 @@ def track_object(objs,labels):
         ut.red_light("OFF")
         arr_track_data=[0,0,0,0,0,0]
         return
-
     
     #ut.head_lights("OFF")
     k=0
@@ -86,10 +85,7 @@ def track_object(objs,labels):
     
     obj_y_center=y_min+(y_diff/2)
     obj_y_center=round(obj_y_center,3)
-    
-        
-    #print("[",obj_x_center, obj_y_center,"]")
-        
+                  
     x_deviation=round(0.5-obj_x_center,3)
     y_deviation=round(0.5-obj_y_center,3)
         
@@ -191,10 +187,8 @@ def main():
     mdl = model
         
     interpreter, labels =cm.load_model(model_dir,mdl,lbl,edgetpu)
-    
     fps=1
     arr_dur=[0,0,0]
-    #while cap.isOpened():
     while True:
         start_time=time.time()
         
@@ -212,8 +206,6 @@ def main():
         pil_im = Image.fromarray(cv2_im_rgb)
        
         arr_dur[0]=time.time() - start_t0
-        #cm.time_elapsed(start_t0,"camera capture")
-        #----------------------------------------------------
        
         #-------------------Inference---------------------------------
         start_t1=time.time()
@@ -221,20 +213,16 @@ def main():
         interpreter.invoke()
         objs = cm.get_output(interpreter, score_threshold=threshold, top_k=top_k)
         
-        arr_dur[1]=time.time() - start_t1
-        #cm.time_elapsed(start_t1,"inference")
-        #----------------------------------------------------
-       
+        arr_dur[1]=time.time() - start_t1       
        #-----------------other------------------------------------
         start_t2=time.time()
-        track_object(objs,labels)#tracking  <<<<<<<
+        track_object(objs,labels)#tracking 
        
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
         
         cv2_im = draw_overlays(cv2_im, objs, labels, arr_dur, arr_track_data)
-       # cv2.imshow('Object Tracking - TensorFlow Lite', cv2_im)
         
         ret, jpeg = cv2.imencode('.jpg', cv2_im)
         pic = jpeg.tobytes(
@@ -330,11 +318,7 @@ def draw_overlays(cv2_im, objs, labels, arr_dur, arr_track_data):
         
         box_color, text_color, thickness=(0,150,255), (0,255,0),2
         cv2_im = cv2.rectangle(cv2_im, (x0, y0), (x1, y1), box_color, thickness)
-        
-
-        #text3 = '{}% {}'.format(percent, labels.get(obj.id, obj.id))
-        #cv2_im = cv2.putText(cv2_im, text3, (x0, y1-5),font, 0.5, text_color, thickness)
-        
+           
     return cv2_im
 
 main()
