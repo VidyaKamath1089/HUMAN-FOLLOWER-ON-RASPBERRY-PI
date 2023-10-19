@@ -14,3 +14,5 @@ While the robot is tracking / following the object, working of tracking algorith
    <img src="https://github.com/VidyaKamath1089/HUMAN-FOLLOWER-ON-RASPBERRY-PI/blob/main/RoboView.jpg" >
 </p>
 
+# References 
+1. Vidya Kamath, A. Renuka, "Deep learning based object detection for resource constrained devices: Systematic review, future trends and challenges ahead", Neurocomputing, Volume 531, 2023, Pages 34-60, ISSN 0925-2312, https://doi.org/10.1016/j.neucom.2023.02.006.
